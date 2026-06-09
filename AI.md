@@ -16,7 +16,6 @@ Projedeki "harici üçüncü parti kütüphane kullanılmaması" kısıtlamasın
 3. **Linux Dosya Sistemi Harf Duyarlılığı (Case-Sensitivity) ve Rotalama Senkronizasyonu:** Lokal Windows ortamında sorunsuz çalışan ancak canlı Linux sunucusuna geçildiğinde rotaların kırılmasıyla (`header("Location: ...")`) tetiklenen HTTP 404 ve buna bağlı nesne bulunamadı kaynaklı PHP `Fatal Error` çökmelerini, sistemin tüm dosya ağacını tarayarak çözdüm. Kod tabanındaki tüm yönlendirmeleri, view köprülerini ve link parametrelerini, Linux işletim sisteminin harf duyarlı standartlarıyla %100 senkronize hale getirerek sunucu seviyesindeki dosya adresi kilitlenmelerini kalıcı olarak ortadan kaldırdım.
 
 ### Uygulanan JavaScript Sıkıştırma Algoritması
-```javascript
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 600;
@@ -36,7 +35,6 @@ Dosya transfer süreci, verilerin bütünlüğü bozulmadan FTP/SFTP protokolü 
 Lokaldeki ilişkisel veritabanı mimarisi, tablolar arası ilişkiler ve kısıtlamalar korunarak SQL scripti halinde export edilmiş; canlı sunucudaki phpMyAdmin paneli üzerinden import edilerek kararlı bir MySQL veritabanı motoru ayağa kaldırılmıştır. Sunucular arasındaki işletim sistemi ve veritabanı motoru versiyon farklılıklarından dolayı ortaya çıkabilecek karakter kodlaması (character encoding) uyuşmazlıklarını ve Türkçe karakter deformasyonlarını önlemek amacıyla, SQL bağlantısı sağlandığı an istemci karakter seti UTF-8 (`utf8`) olarak set edilmiştir.
 
 ### Uygulanan Canlı Ortam Bağlantı Kodu (baglan.php)
-```php
 <?php
 $sunucu = "localhost";
 $kullanici = "canli_db_user";
@@ -60,7 +58,6 @@ Mühendis seçim arayüzündeki (HTML select element) veri tekrarlarını ve zay
 `users` tablosundaki veriler ekrana basılırken ham haliyle tekrarlı listelenmek yerine, mantıksal bir formatlama paternine tabi tutulmuştur. Mühendisin adı (`first_name`) ve soyadı (`last_name`) birleştirilmiş, ardına sistemdeki benzersiz tekil değeri olan kullanıcı adı (`username`) parantez içinde eklenmiştir. Böylece arayüz seviyesinde veri çoğullanması engellenmiş, son kullanıcının sistemdeki tekil (unique) mühendis kayıtlarını net bir şekilde ayırt edebilmesi sağlanmış ve sistem jüri sunumuna uygun profesyonel bir veri eşleme (data mapping) standartına kavuşturulmuştur.
 
 ### Uygulanan PHP Arayüz Döngüsü
-```php
 while($row = mysqli_fetch_assoc($sonuc)) {
     echo "<option value='".$row['id']."'>".$row['first_name']." ".$row['last_name']." (".$row['username'].")</option>";
 }
@@ -77,7 +74,6 @@ Veritabanı normalizasyon kurallarına (1NF/2NF) göre `users` tablosunda atomik
 Bu sayede mevcut veritabanı mimarisi, indeksleri ve tablolar arası ilişkiler manipüle edilmemiş; aynı zamanda disk üzerinde gereksiz güncelleme yükü (update overhead) oluşturulmadan, çalışma zamanında (runtime) jüri sunumuna uygun yapay bir sanal sütun (`tam_ad`) üretilmiştir.
 
 ### Uygulanan Optimize SQL Sorgusu
-```sql
 SELECT id, username, CONCAT(first_name, ' ', last_name) AS tam_ad 
 FROM users 
 WHERE role = 'engineer';
@@ -94,7 +90,6 @@ Sistemde kayıtlı bir çiftçi hesabı silinmeye çalışıldığında fırlat�
 Bu kilitlenmeyi aşmak ve ilişkisel bütünlüğü (Referential Integrity) korumak adına, PHP tarafında güvenli bir **Aşamalı Silme (Cascading Delete)** iş akışı inşa edilmiştir. Geliştirilen mekanizma, ana tablo üzerindeki kullanıcıyı silmeden önce, alt tablodaki o kullanıcıya ait tüm ilişkili çocuk kayıtları (`farmer_consultations`) temizler. Referans bağımlılığı tamamen ortadan kalkan ana kayıt, ikinci adımda güvenli bir şekilde silinir. Ayrıca URL parametresi manipülasyonu ile oluşabilecek SQL Injection zafiyetlerini önlemek adına gelen ID değeri `intval()` filtresinden geçirilerek tür güvenliği (Type Safety) sağlanmıştır.
 
 ### Uygulanan Güvenli Silme Betiği (Sil.php)
-```php
 if (isset($_GET['sil_id'])) {
     $sil_id = intval($_GET['sil_id']);
     $sil_sql = "DELETE FROM farmer_consultations WHERE farmer_id = $sil_id";
