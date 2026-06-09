@@ -30,7 +30,7 @@ Bu proje, çiftçiler ile ziraat mühendislerini dijital bir platformda buluştu
 ├── 📂 includes/              # Ortak Bileşenler ve Şablonlar
 │   ├──  footer.php             # Sayfa alt bilgi alanı
 │   └──  header.php             # Sayfa üst bilgi alanı
-├── 📂 uploads/               # Kullanıcıların yüklediği dökümanlar/görseller
+├── 📂 uploads/               # Kullanıcıların yüklediği dokümanlar/görseller
 │
 ├──  add_fields.php           # Yeni tarla/mahsul alanı ekleme modülü
 ├──  baglan.php               # Veritabanı bağlantı ve ayar dosyası
