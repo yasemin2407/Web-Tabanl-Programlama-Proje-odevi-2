@@ -24,7 +24,7 @@ Bu proje, çiftçiler ile ziraat mühendislerini dijital bir platformda buluştu
 - **Database:** MySQL
 - **Optimization:** JavaScript 
 
-
+```text
 📂 akilli-tarim-otomasyonu/
 │
 ├── 📂 includes/              # Ortak Bileşenler ve Şablonlar
