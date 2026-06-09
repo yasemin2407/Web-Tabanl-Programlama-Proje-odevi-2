@@ -2,6 +2,13 @@
 
 Bu proje, çiftçiler ile ziraat mühendislerini dijital bir platformda buluşturarak tarımsal verimliliği artırmayı, ürün hastalıklarına hızlı müdahale etmeyi ve tarla/sulama takibini kolaylaştırmayı amaçlayan web tabanlı bir yönetim sistemidir.
 
+---
+
+## Proje Tanıtım Videosu Linki
+https://youtu.be/OuvS9tRUfaY
+
+---
+
 ## Özellikler
 
 - **Çiftçi Paneli:**
@@ -16,6 +23,19 @@ Bu proje, çiftçiler ile ziraat mühendislerini dijital bir platformda buluştu
   - **İstemci Tarafında Resim Sıkıştırma:** Çiftçilerin yüklediği yüksek çözünürlüklü fotoğraflar, sunucuyu yormamak ve kota aşımını engellemek için **HTML5 Canvas API** kullanılarak tarayıcıda anlık olarak optimize edilir ve sıkıştırılır.
   - **Şifre Güvenliği:** Kullanıcı şifreleri veritabanına düz metin olarak değil, `password_hash()` fonksiyonu ile kriptolanarak güvenli bir şekilde kaydedilir.
   - **Oturum Yönetimi:** Kullanıcı yetkilendirmeleri tamamen PHP `Session` mimarisiyle korunmaktadır.
+
+ ---
+ 
+## Otomasyondan Birkaç Görsel
+- Çiftçi Paneli
+ <img width="528" height="258" alt="Ekran görüntüsü 2026-06-09 212300" src="https://github.com/user-attachments/assets/05030469-0940-43f5-b032-9dc78063c48b" />
+
+---
+
+- Ziraat Mühendisi Paneli
+ <img width="524" height="258" alt="Ekran görüntüsü 2026-06-09 212218" src="https://github.com/user-attachments/assets/f2089e7c-38ae-494b-8e3e-1fd1988318c5" />
+
+---
 
 ## Kullanılan Yazılım Araçları
 
